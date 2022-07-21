@@ -240,13 +240,19 @@
         <form action="https://translate.google.com/" method="get">
           <tr>
             <td>Name:</td>
-            <!-- TODO: Number is NOT allowed, CANNOT be empty, special character is ALLOWED -->
-            <td><input type="text" name="name" id="name" /></td>
+            <!-- Number is NOT allowed, CANNOT be empty, special character is ALLOWED -->
+            <td>
+              <input type="text" name="name" id="name" oninput="checkName()" onfocusout="checkName()" />
+              <label for="name" id="name-lbl"></label>
+            </td>
           </tr>
           <tr>
             <td>Module code:</td>
             <!-- TODO: Start with 2 uppercase followed by four digits, CAN be empty -->
-            <td><input type="text" name="module-code" id="module-code" /></td>
+            <td>
+              <input type="text" name="module-code" id="module-code" oninput="checkModuleCode()" />
+              <label for="module-code" id="module-code-lbl"></label>
+            </td>
           </tr>
           <tr>
             <td>Current Date:</td>
@@ -311,6 +317,31 @@
 
     <script>
       // JavaScript here
+
+      function checkName() {
+        var nameValue = document.getElementById("name").value;
+
+        // Check if empty or contains number
+        if (nameValue === "") {
+          document.getElementById("name-lbl").innerHTML = "Cannot be empty";
+        } else if (/\d/.test(nameValue)) {
+          document.getElementById("name-lbl").innerHTML = "Cannot contain number";
+        } else {
+          document.getElementById("name-lbl").innerHTML = "";
+        }
+      }
+
+      function checkModuleCode() {
+        var moduleCode = document.getElementById("module-code").value;
+
+        // Check if 6 char
+        if (moduleCode.length != 6) {
+          document.getElementById("module-code-lbl").innerHTML = "Must be 6 characters";
+          return;
+        }else if (moduleCode[0])
+        // Check first 2 char for uppercase
+        // Check next 4 char for number
+      }
     </script>
   </body>
 </html>
