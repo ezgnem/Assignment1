@@ -3,14 +3,88 @@
     <title>A1-T01-ID1,ID2,ID3(N1,N2,N3)</title>
     <style>
       /* CSS styles here */
-      pre {
+      .part-one {
+        font-family: Arial, sans-serif;
+      }
+      .part-one p {
+        page-break-before: always;
+      }
+      .part-one table {
+        width: 50%;
+        border-spacing: 1;
+        border: 1px solid black;
+      }
+      .part-one th,
+      .part-one td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        height: 30px;
+        padding: 10px;
+      }
+      .part-one th {
+        height: 50px;
+        background-color: #deeaf5;
         font-size: 20px;
+      }
+      .part-two pre {
+        font-size: 20px;
+      }
+      .part-three h2,
+      .part-three pre,
+      .part-three p {
+        margin: 0;
+      }
+      .part-three p {
+        font-size: 20px;
+      }
+      .part-three table,
+      .part-three th,
+      .part-three td {
+        border: 2px solid black;
+      }
+      .part-three p {
+        margin-left: 55px;
+      }
+      .w-20 {
+        width: 20%;
+      }
+      .w-30 {
+        width: 30%;
+      }
+      .w-70 {
+        width: 70%;
       }
     </style>
   </head>
+
   <body>
     <div class="part-one">
       <!-- HTML for part 1 -->
+      <table>
+        <tr>
+          <th class="w-70" colspan="3">CSIT128: Assignment 1</th>
+          <th class="w-30" colspan="2">Group T01</th>
+        </tr>
+        <tr>
+          <td class="w-20" rowspan="3">
+            Student Number /<br />
+            Name / Email
+          </td>
+          <td>7765502</td>
+          <td>Teo Bin Sheng, Benson</td>
+          <td>Bensont87@hotmail.com</td>
+        </tr>
+        <tr>
+          <td>7685373</td>
+          <td>Gao Mengze</td>
+          <td>Gao_Mengze@xyz.com</td>
+        </tr>
+        <tr>
+          <td>7431430</td>
+          <td>Taporaj Sushan Rai</td>
+          <td>tsr395@uowmail.edu.au</td>
+        </tr>
+      </table>
     </div>
     <div class="part-two">
       <!-- HTML for part 2 -->
@@ -97,9 +171,142 @@
     </div>
     <div class="part-three">
       <!-- HTML for part 3 -->
+      <br /><br />
+      <h1>Part 3: University policies and services</h1>
+      <br />
+      <h2>PLAGIARISM</h2>
+      <p>
+        Plagiarism is treated seriously. If we suspect any work is copied, all students involved are likely to receive zero <br />
+        for the entire assignment.Plagiarism has led to students being expelled from the University. <br />
+        Please click
+        <a href="https://www.uow.edu.au/student/support-services/learning-development/plagiarism/">here</a>
+        to read more about Plagiarism.<br />
+      </p>
+      <br />
+      <h2>ACADEMIC CONSIDERATION</h2>
+      <p>
+        We know that ife isn't perfect and there may be a time when you can't hand in an assignment on time: or make it<br />
+        to class or an exam. If you find youself in a situation like this, you may be eligible for Academic Consideration.<br />
+        Academic Consideration is designed to help students when they are sick, injured, or where a serious, unplanned<br />
+        situation has occurred that has affected their ability to study.
+        <br />
+        Please click
+        <a href="https://www.uow.edu.au/student/admin/academic-consideration/portal/">here</a>
+        to read more about Academic Consideration.<br />
+      </p>
+      <br />
+      <h2>STUDENT SUPPORT ADVISERS</h2>
+      <p>
+        If you have an issue or a problem that is affecting your study, then the Student Support Advisers may be able to<br />
+        help. There are Student Support Advisers available to assist students who are studying at all UOW Campuses and<br />
+        in all UOW Faculties.<br />
+        Please click
+        <a href="https://www.uow.edu.au/student/support-services/advisers/">here</a>
+        to read more about Student Support Advisers.<br />
+      </p>
+
+      <br />
+      <p>Student Support Adviser contact details for Faculty of Engineering and Information Sciences:<br /></p>
+      <table width="25%" style="margin-left: 55px; border: 2px solid black">
+        <tr>
+          <td>
+            <b>Ann-Maree Smith</b><br />Bld 40:133,Wollongong<br />Campus<br />
+            (02) 4221 4714<br />Mon-Fri<br />ams@uow.edu.au
+          </td>
+          <td>
+            <b>Mitz Perez</b><br />Bld 40:105,Wollongong<br />Campus<br />
+            (02) 4221 3833<br />Mon-Fri<br />mperez@uow.edu.au
+          </td>
+        </tr>
+      </table>
+      <br />
+      <h2>DISABILITY SERVICES</h2>
+      <p>
+        Disability Services provide advice and support for students with a disability or health condition. Our aim is to<br />
+        ensure students with a disability realise their full academic potential. We also provide support for those who are<br />
+        the primary carers for those with a medical condition or disability.
+        <br />
+        Please click
+        <a href="https://www.uow.edu.au/student/support-services/disability/">here</a>
+        to read more about Disability Services.<br />
+      </p>
     </div>
+    <br />
+    <br />
     <div class="part-four">
       <!-- HTML for part 4 -->
+      <!-- 4.1  -->
+      <table>
+        <form action="https://translate.google.com/" method="get">
+          <tr>
+            <td>Name:</td>
+            <!-- TODO: Number is NOT allowed, CANNOT be empty, special character is ALLOWED -->
+            <td><input type="text" name="name" id="name" /></td>
+          </tr>
+          <tr>
+            <td>Module code:</td>
+            <!-- TODO: Start with 2 uppercase followed by four digits, CAN be empty -->
+            <td><input type="text" name="module-code" id="module-code" /></td>
+          </tr>
+          <tr>
+            <td>Current Date:</td>
+            <!-- TODO: Add date time using js, format: 2022 July 12 Monday 1:35pm -->
+            <td><input type="text" name="date" id="date" disabled /></td>
+          </tr>
+
+          <!-- 4.2 -->
+          <tr>
+            <td>Message:</td>
+            <td>
+              <!-- TODO: CANNOT be empty -->
+              <textarea name="text" id="translate-text" cols="15" rows="4">Test 202207</textarea>
+            </td>
+          </tr>
+          <tr>
+            <td>Find:</td>
+            <td><input type="text" name="find" id="find" /></td>
+          </tr>
+          <tr>
+            <td>Replace:</td>
+            <!-- TODO: Enable if there is data in find text input -->
+            <td><input type="text" name="replace" id="replace" disabled /></td>
+            <!-- TODO: Replacement message after find and replace -->
+            <td><label id="replacement-msg" for="replace"></label></td>
+          </tr>
+          <tr>
+            <td><input type="button" value="Find and Replace" /></td>
+          </tr>
+
+          <!-- 4.3 -->
+          <tr>
+            <td>Source language:</td>
+            <td>
+              <select name="sl" id="sl">
+                <option value="en">English</option>
+                <option value="ms">Malay</option>
+                <option value="ja">Japanese</option>
+                <option value="ko">Korean</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>Target language:</td>
+            <td>
+              <input type="radio" name="tl" id="ch-CN-opt" value="ch-CN" />
+              <label for="ch-CN-opt">Chinese</label>
+              <input type="radio" name="tl" id="ms-opt" value="ms" />
+              <label for="ms-opt">Malay</label>
+              <input type="radio" name="tl" id="ja-opt" value="ja" checked />
+              <label for="ja-opt">Japanese</label>
+              <input type="radio" name="tl" id="ko-opt" value="ko" />
+              <label for="ko-opt">Korean</label>
+            </td>
+          </tr>
+          <tr>
+            <td><input type="submit" value="Submit" /></td>
+          </tr>
+        </form>
+      </table>
     </div>
 
     <script>
