@@ -239,24 +239,21 @@
       <table>
         <form action="https://translate.google.com/" method="get">
           <tr>
-            <td>Name:</td>
-            <!-- Number is NOT allowed, CANNOT be empty, special character is ALLOWED -->
+            <td><label for="name">Name:</label></td>
             <td>
               <input type="text" name="name" id="name" oninput="checkName()" onfocusout="checkName()" />
               <label for="name" id="name-lbl"></label>
             </td>
           </tr>
           <tr>
-            <td>Module code:</td>
-            <!-- TODO: Start with 2 uppercase followed by four digits, CAN be empty -->
+            <td><label for="module-code">Module code:</label></td>
             <td>
               <input type="text" name="module-code" id="module-code" oninput="checkModuleCode()" />
               <label for="module-code" id="module-code-lbl"></label>
             </td>
           </tr>
           <tr>
-            <td>Current Date:</td>
-            <!-- TODO: Add date time using js, format: 2022 July 12 Monday 1:35pm -->
+            <td><label for="date">Current Date:</label></td>
             <td><input type="text" name="date" id="date" disabled /></td>
           </tr>
 
@@ -334,14 +331,24 @@
       function checkModuleCode() {
         var moduleCode = document.getElementById("module-code").value;
 
-        // Check if 6 char
-        if (moduleCode.length != 6) {
-          document.getElementById("module-code-lbl").innerHTML = "Must be 6 characters";
-          return;
-        }else if (moduleCode[0])
-        // Check first 2 char for uppercase
-        // Check next 4 char for number
+        // Check total of char is 6, first 2 char for uppercase and next 4 char for number
+        if (moduleCode.length != 6 || !/[A-Z]/.test(moduleCode.substr(0, 1)) || !/\d/.test(moduleCode.substr(2, 4))) {
+          document.getElementById("module-code-lbl").innerHTML = "Module code should be 6 charaters, starting with 2 uppercase alphabets followed by 4 digits";
+        } else {
+          document.getElementById("module-code-lbl").innerHTML = "";
+        }
       }
+
+      window.onload = function () {
+        var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        var fullDateArr = new Date().toISOString().substr(0, 10).split("-");
+        var year = fullDateArr[0];
+        var month = months[fullDateArr[1]];
+        var day = fullDateArr[2];
+
+        // TODO: Error with month here
+        document.getElementById("date").value = day + month + year;
+      };
     </script>
   </body>
 </html>
