@@ -248,7 +248,7 @@
           <tr>
             <td><label for="module-code">Module code:</label></td>
             <td>
-              <input type="text" name="module-code" id="module-code" oninput="checkModuleCode()" />
+              <input type="text" name="module-code" id="module-code" oninput="checkModuleCode()" onfocusout="checkModuleCode()" />
               <label for="module-code" id="module-code-lbl"></label>
             </td>
           </tr>
@@ -306,7 +306,7 @@
             </td>
           </tr>
           <tr>
-            <td><input type="submit" value="Submit" /></td>
+            <td><input type="submit" value="Submit" id="submit" disabled /></td>
           </tr>
           <tr>
             <td><input type="button" value="Reset" onclick="resetPage()" /></td>
@@ -324,10 +324,13 @@
         // Check if empty or contains number
         if (nameValue === "") {
           document.getElementById("name-lbl").innerHTML = "Cannot be empty";
+          document.getElementById("submit").disabled = true;
         } else if (/\d/.test(nameValue)) {
           document.getElementById("name-lbl").innerHTML = "Cannot contain number";
+          document.getElementById("submit").disabled = true;
         } else {
           document.getElementById("name-lbl").innerHTML = "";
+          document.getElementById("submit").disabled = false;
         }
       }
 
@@ -337,8 +340,10 @@
         // Check total of char is 6, first 2 char for uppercase and next 4 char for number
         if (moduleCode.length != 6 || !/[A-Z]/.test(moduleCode.substr(0, 1)) || !/\d/.test(moduleCode.substr(2, 4))) {
           document.getElementById("module-code-lbl").innerHTML = "Module code should be 6 charaters, starting with 2 uppercase alphabets followed by 4 digits";
+          document.getElementById("submit").disabled = true;
         } else {
           document.getElementById("module-code-lbl").innerHTML = "";
+          document.getElementById("submit").disabled = false;
         }
       }
 
@@ -360,8 +365,10 @@
       function checkTranslateText() {
         if (document.getElementById("translate-text").value == "") {
           document.getElementById("translate-text-lbl").innerHTML = "Message cannot be empty.";
+          document.getElementById("submit").disabled = true;
         } else {
           document.getElementById("translate-text-lbl").innerHTML = "";
+          document.getElementById("submit").disabled = false;
         }
       }
 
