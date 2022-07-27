@@ -29,6 +29,10 @@
       .part-two pre {
         font-size: 20px;
       }
+      .part-two img {
+        width: 200;
+        height: 200;
+      }
       .part-three h2,
       .part-three pre {
         margin: 0;
@@ -52,6 +56,105 @@
         width: 70%;
       }
     </style>
+    <script>
+      // JavaScript here
+
+      function checkName() {
+        var nameValue = document.getElementById("name").value;
+
+        // Check if empty or contains number
+        if (nameValue === "") {
+          document.getElementById("name-lbl").innerHTML = "Cannot be empty";
+          document.getElementById("submit").disabled = true;
+        } else if (/\d/.test(nameValue)) {
+          document.getElementById("name-lbl").innerHTML = "Cannot contain number";
+          document.getElementById("submit").disabled = true;
+        } else {
+          document.getElementById("name-lbl").innerHTML = "";
+          document.getElementById("submit").disabled = false;
+        }
+      }
+
+      function checkModuleCode() {
+        var moduleCode = document.getElementById("module-code").value;
+
+        // Check total of char is 6, first 2 char for uppercase and next 4 char for number
+        if (moduleCode.length != 6 || !/[A-Z]/.test(moduleCode.substr(0, 1)) || !/\d/.test(moduleCode.substr(2, 4))) {
+          document.getElementById("module-code-lbl").innerHTML = "Module code should be 6 charaters, starting with 2 uppercase alphabets followed by 4 digits";
+          document.getElementById("submit").disabled = true;
+        } else {
+          document.getElementById("module-code-lbl").innerHTML = "";
+          document.getElementById("submit").disabled = false;
+        }
+      }
+
+      window.onload = function () {
+        // Full name of the months to look up
+        var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+        // Get date and split to array
+        var fullDateArr = new Date().toISOString().substr(0, 10).split("-");
+
+        // Get year, month and date for display later
+        var year = fullDateArr[0];
+        var month = months[parseInt(fullDateArr[1] - 1)]; // The list is 1 index behind, eg. jan is 1 -> months[0]
+        var day = fullDateArr[2];
+
+        document.getElementById("date").value = year + " " + month + " " + day;
+      };
+
+      function checkTranslateText() {
+        if (document.getElementById("translate-text").value == "") {
+          document.getElementById("translate-text-lbl").innerHTML = "Message cannot be empty.";
+          document.getElementById("submit").disabled = true;
+        } else {
+          document.getElementById("translate-text-lbl").innerHTML = "";
+          document.getElementById("submit").disabled = false;
+        }
+      }
+
+      function enableReplace() {
+        if (document.getElementById("find").value != "") {
+          document.getElementById("replace").disabled = false;
+        } else {
+          document.getElementById("replace").disabled = true;
+        }
+      }
+
+      function findAndReplace() {
+        // Get find and replace value
+        var searchStr = document.getElementById("find").value;
+        var replaceStr = document.getElementById("replace").value;
+        var messageTextArea = document.getElementById("translate-text");
+        var replaceLabel = document.getElementById("replace-lbl");
+
+        console.log(searchStr, replaceStr, messageTextArea.value);
+
+        if (searchStr != "") {
+          var index = 0;
+          var startIndex = 0;
+          var occurrence = 0;
+
+          // Search for all occurrence of searchStr
+          while ((index = messageTextArea.value.indexOf(searchStr, startIndex)) > -1) {
+            occurrence++;
+            startIndex = index + searchStr.length;
+          }
+
+          // Display replaced occurrence
+          replaceLabel.innerHTML = "Replaced " + occurrence + " occurrence(s).";
+
+          // Find and replace
+          messageTextArea.value = messageTextArea.value.replaceAll(searchStr, replaceStr);
+        } else {
+          replaceLabel.innerHTML = "";
+        }
+      }
+
+      function resetPage() {
+        window.location.reload();
+      }
+    </script>
   </head>
 
   <body>
@@ -311,105 +414,5 @@
         </form>
       </table>
     </div>
-
-    <script>
-      // JavaScript here
-
-      function checkName() {
-        var nameValue = document.getElementById("name").value;
-
-        // Check if empty or contains number
-        if (nameValue === "") {
-          document.getElementById("name-lbl").innerHTML = "Cannot be empty";
-          document.getElementById("submit").disabled = true;
-        } else if (/\d/.test(nameValue)) {
-          document.getElementById("name-lbl").innerHTML = "Cannot contain number";
-          document.getElementById("submit").disabled = true;
-        } else {
-          document.getElementById("name-lbl").innerHTML = "";
-          document.getElementById("submit").disabled = false;
-        }
-      }
-
-      function checkModuleCode() {
-        var moduleCode = document.getElementById("module-code").value;
-
-        // Check total of char is 6, first 2 char for uppercase and next 4 char for number
-        if (moduleCode.length != 6 || !/[A-Z]/.test(moduleCode.substr(0, 1)) || !/\d/.test(moduleCode.substr(2, 4))) {
-          document.getElementById("module-code-lbl").innerHTML = "Module code should be 6 charaters, starting with 2 uppercase alphabets followed by 4 digits";
-          document.getElementById("submit").disabled = true;
-        } else {
-          document.getElementById("module-code-lbl").innerHTML = "";
-          document.getElementById("submit").disabled = false;
-        }
-      }
-
-      window.onload = function () {
-        // Full name of the months to look up
-        var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-
-        // Get date and split to array
-        var fullDateArr = new Date().toISOString().substr(0, 10).split("-");
-
-        // Get year, month and date for display later
-        var year = fullDateArr[0];
-        var month = months[parseInt(fullDateArr[1])];
-        var day = fullDateArr[2];
-
-        document.getElementById("date").value = year + " " + month + " " + day;
-      };
-
-      function checkTranslateText() {
-        if (document.getElementById("translate-text").value == "") {
-          document.getElementById("translate-text-lbl").innerHTML = "Message cannot be empty.";
-          document.getElementById("submit").disabled = true;
-        } else {
-          document.getElementById("translate-text-lbl").innerHTML = "";
-          document.getElementById("submit").disabled = false;
-        }
-      }
-
-      function enableReplace() {
-        if (document.getElementById("find").value != "") {
-          document.getElementById("replace").disabled = false;
-        } else {
-          document.getElementById("replace").disabled = true;
-        }
-      }
-
-      function findAndReplace() {
-        // Get find and replace value
-        var searchStr = document.getElementById("find").value;
-        var replaceStr = document.getElementById("replace").value;
-        var messageTextArea = document.getElementById("translate-text");
-        var replaceLabel = document.getElementById("replace-lbl");
-
-        console.log(searchStr, replaceStr, messageTextArea.value);
-
-        if (searchStr != "") {
-          var index = 0;
-          var startIndex = 0;
-          var occurrence = 0;
-
-          // Search for all occurrence of searchStr
-          while ((index = messageTextArea.value.indexOf(searchStr, startIndex)) > -1) {
-            occurrence++;
-            startIndex = index + searchStr.length;
-          }
-
-          // Display replaced occurrence
-          replaceLabel.innerHTML = "Replaced " + occurrence + " occurrence(s).";
-
-          // Find and replace
-          messageTextArea.value = messageTextArea.value.replaceAll(searchStr, replaceStr);
-        } else {
-          replaceLabel.innerHTML = "";
-        }
-      }
-
-      function resetPage() {
-        window.location.reload();
-      }
-    </script>
   </body>
 </html>
